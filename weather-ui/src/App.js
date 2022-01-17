@@ -29,12 +29,17 @@ const App = () => {
     <>
     
      <div className="main">
+         <h1>5-Day Forecast</h1>
+       <div className="input">
             <Citylocation onCityFound={(cityInfo)=>setlocation_key(cityInfo.key)}/>
+       </div>
         <div className="weathercard">
       {
-        
+        error ? (<h1>{error}</h1>) :
         weatherInfo && weatherInfo.map((item,index)=>{
-          return ( <Weather min={item.min} max={item.max} icon={item.icon} weatherType={item.weatherType} key={index} date={item.date} />)
+          return (<div className="grid-col">
+             <Weather min={item.min} max={item.max} icon={item.icon} weatherType={item.weatherType} key={index} date={item.date} />
+             </div>)
         })
       }
         </div>
