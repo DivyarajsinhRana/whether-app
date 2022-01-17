@@ -1,0 +1,19 @@
+.main{
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.weathercard{
+  display: flex;
+  margin-top: 50px;
+}
+.cardDiv{
+  border: 1px solid grey;
+  height: 250px;
+  width: 150px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
