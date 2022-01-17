@@ -6,15 +6,15 @@ import { API_KEY } from '../../../constants';
 const Citylocation = ({onCityFound}) => {
     const [zipcode,setZipcode] = useState();
     const [location_key,setLoction_key] = useState();
-    console.log(location_URL)
+    // console.log(location_URL)
     const handleClick = (e)=>{
         console.log(e.target.value);
         e.preventDefault();
         axios.get(`${location_URL}apikey=${API_KEY}&q=${zipcode}`).then((res)=>setLoction_key(res.data)).catch(e=>console.log(e.message));
     }
-    console.log("location>>>",location_key);
+    // console.log("location>>>",location_key);
     const l_key = location_key && location_key[0];
-    console.log("lkry>>>",l_key);
+    // console.log("lkry>>>",l_key);
     const key =l_key && l_key.Key;
     console.log(key);
     const cityfound = l_key && onCityFound({

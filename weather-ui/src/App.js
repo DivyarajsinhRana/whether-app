@@ -11,7 +11,9 @@ const App = () => {
   const [error,setError] = useState('');
   useEffect(()=>{
     if(location_key){
-      axios.get(`${baseURL}${location_key}?apikey=${API_KEY}`).then((res)=>setweatherInfo(res.data.DailyForecasts.map(df=>{
+      axios.get(`${baseURL}${location_key}?apikey=${API_KEY}`).then((res)=>{
+        console.log("res.data",res.data);
+        setweatherInfo(res.data.DailyForecasts.map(df=>{
         console.log(df);
         return {
           min : df.Temperature.Minimum.Value,
@@ -20,11 +22,10 @@ const App = () => {
           icon:df.Day.Icon,
           date:df.Date
         }
-      }))).catch((error)=>setError(error.message));
+      }))}).catch((error)=>setError(error.message));
     }
   },[location_key])
-  console.log("weatherInfo>>>",weatherInfo);
-  console.log("locationKey>>",location_key);
+ 
   return (
     <>
     
@@ -37,8 +38,8 @@ const App = () => {
       {
         error ? (<h1>{error}</h1>) :
         weatherInfo && weatherInfo.map((item,index)=>{
-          return (<div className="grid-col">
-             <Weather min={item.min} max={item.max} icon={item.icon} weatherType={item.weatherType} key={index} date={item.date} />
+          return (<div className="grid-col" key={index} >
+             <Weather min={item.min} max={item.max} icon={item.icon} weatherType={item.weatherType}  date={item.date} />
              </div>)
         })
       }
